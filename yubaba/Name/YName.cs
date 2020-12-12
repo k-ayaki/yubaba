@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NMeCab;
+
+namespace yubaba.Name
+{
+    class YName
+    {
+        public string firstName { get; }
+        public string strangeName { get; }
+        public string newName { get; }
+        public bool fStrange { get; }
+        public YName(string inString)
+        {
+            this.firstName = "";
+            this.strangeName = "";
+            this.newName = "";
+            this.fStrange = true;
+            var mecab = MeCabTagger.Create();
+            MeCabNode node = mecab.ParseToNode(inString);
+            node = node.Next;
+            while (node != null)
+            {
+                if (node.Feature != "BOS/EOS,*,*,*,*,*,*,*,*")
+                {
+                    Chunk 単語 = new Chunk(node);
+                    if (単語.isPartOfSpeech("名詞","固有名詞","人名","名"))
+                    {
+                        this.firstName = node.Surface;
+                        fStrange = false;
+                    }
+                }
+                node = node.Next;
+            }
+            mecab.Dispose();
+
+            var random = new Random();
+            if (this.firstName.Length > 0)
+            {
+                newName = firstName.Substring((int)(random.Next(0, firstName.Length)), 1);
+            } else
+            {
+                strangeName = inString;
+                newName = strangeName.Substring((int)(random.Next(0, strangeName.Length)), 1);
+            }
+        }
+    }
+}
