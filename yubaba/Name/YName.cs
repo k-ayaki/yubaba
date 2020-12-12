@@ -26,8 +26,8 @@ namespace yubaba.Name
             {
                 if (node.Feature != "BOS/EOS,*,*,*,*,*,*,*,*")
                 {
-                    Chunk 単語 = new Chunk(node);
-                    if (単語.isPartOfSpeech("名詞","固有名詞","人名","名"))
+                    Chunk chunk = new Chunk(node);
+                    if (chunk.isPartOfSpeech("名詞","固有名詞","人名","名"))
                     {
                         this.firstName = node.Surface;
                         fStrange = false;

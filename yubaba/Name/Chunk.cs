@@ -46,8 +46,6 @@ namespace yubaba.Name
             if (6 <= features.Length) 活用型 = features[5];
             if (7 <= features.Length) 原形 = features[6];
             if (8 <= features.Length) 読み = features[7];
-            if (7 <= features.Length) 読み = features[6];
-            if (8 <= features.Length) 発音 = features[7];
         }
         // 品詞とチャンクとの照合
         public bool isPartOfSpeech(string szPartOfSpeech, string szPartOfSpeechSC1 = null, string szPartOfSpeechSC2 = null, string szPartOfSpeechSC3 = null)
